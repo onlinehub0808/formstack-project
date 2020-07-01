@@ -1,0 +1,8 @@
+{
+    "require": {
+        "symfony/routing": "^5.1",
+        "robmorgan/phinx": "^0.12.3",
+        "phpunit/phpunit": "^9.2",
+        "catfan/medoo": "^1.7"
+    }
+}
