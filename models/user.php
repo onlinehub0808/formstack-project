@@ -3,35 +3,44 @@
 class User
 {
 
-    public $id;
-    public $email;
-    public $firstName;
-    public $lastName;
-    public $password;
+    protected $id;
+    protected $email;
+    protected $firstName;
+    protected $lastName;
+    protected $password;
 
-    public function setId($id)
+    public function __construct($id, $email, $firstName, $lastName, $password)
     {
         $this->id = $id;
-    }
-
-    public function setEmail($email)
-    {
         $this->email = $email;
-    }
-
-    public function setFirstName($firstName)
-    {
         $this->firstName = $firstName;
-    }
-
-    public function setlastName($lastName)
-    {
         $this->lastName = $lastName;
+        $this->password = $password;
     }
 
-    public function setpassword($password)
+    public function getId()
     {
-        $this->password = $password;
+        return $this->id;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    public function getlastName()
+    {
+        return $this->lastName;
+    }
+
+    public function getpassword()
+    {
+        return $this->password;
     }
 
 }
