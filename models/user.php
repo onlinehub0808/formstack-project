@@ -50,4 +50,15 @@ class User
 
         return $updatedUser->rowCount();
     }
+
+    public function deleteUser($id)
+    {
+        $deletedUser = $this->db->delete("users",[
+            "AND" => [
+                "id" => $id
+            ]
+        ]);
+
+        return $deletedUser->rowCount();
+    }
 }
