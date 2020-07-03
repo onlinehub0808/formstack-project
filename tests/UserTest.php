@@ -27,17 +27,29 @@ class UserTest extends TestCase
         $user = new User(Connection::make());
 
         $dbuser = $user->createUser('janedoe@gmail.com', 'Jane', 'Doe', 'password');
-        
+
         $checkUser = $user->findUser($dbuser);
 
         $this->assertEquals($checkUser["emailAddress"], 'janedoe@gmail.com');
         $this->assertEquals($checkUser["firstName"], 'Jane');
         $this->assertEquals($checkUser["lastName"], 'Doe');
         $this->assertEquals($checkUser["password"], 'password');
-        
+
     }
 
     //test editing user by id
+    public function test_edit_user()
+    {
+        $user = new User(Connection::make());
+
+        $dbuser = $user->createUser('janedoe@gmail.com', 'Jane', 'Doe', 'password');
+
+        $updatedUser = $user->updateUser($dbuser, 'johndoe@gmail.com', 'John', 'Doe', 'newpassword');
+
+        //make sure the amount of affected rows is 1
+        $this->assertEquals(1, $updatedUser);
+
+    }
 
     //test deleting user by id
 }
