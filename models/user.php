@@ -20,4 +20,18 @@ class User
 
         return $this->db->id();
     }
+
+    public function findUser($id)
+    {
+        $user = $this->db->get("users", [
+            "emailAddress",
+            "firstName",
+            "lastName",
+            "password"
+        ],[
+            "id[=]" => $id
+        ]);
+
+        return $user;
+    }
 }
