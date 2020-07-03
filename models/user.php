@@ -2,45 +2,22 @@
 
 class User
 {
+    protected $db;
 
-    protected $id;
-    protected $email;
-    protected $firstName;
-    protected $lastName;
-    protected $password;
-
-    public function __construct($id, $email, $firstName, $lastName, $password)
+    public function __construct($db)
     {
-        $this->id = $id;
-        $this->email = $email;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->password = $password;
+        $this->db = $db;
     }
 
-    public function getId()
+    public function createUser($email, $firstName, $lastName, $password)
     {
-        return $this->id;
-    }
+        $this->db->insert("users", [
+            "emailAddress" => $email,
+            "firstName" => $firstName,
+            "lastName" => $lastName,
+            "password" => $password,
+        ]);
 
-    public function getEmail()
-    {
-        return $this->email;
+        return $this->db->id();
     }
-
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    public function getlastName()
-    {
-        return $this->lastName;
-    }
-
-    public function getpassword()
-    {
-        return $this->password;
-    }
-
 }
