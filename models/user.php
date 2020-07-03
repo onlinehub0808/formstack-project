@@ -19,6 +19,7 @@ class User
         ]);
 
         return $this->db->id();
+        
     }
 
     //returns an array of user data

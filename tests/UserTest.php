@@ -1,7 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-require 'controllers/userController.php';
 require 'db/config/dbconnector.php';
 require 'db/config/querybuilder.php';
 require 'models/user.php';
@@ -21,7 +20,7 @@ class UserTest extends TestCase
     }
 
     //test showing user by id
-    
+
     public function test_show_user()
     {
         $user = new User(Connection::make());
