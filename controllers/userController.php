@@ -1,6 +1,5 @@
 <?php
 require 'db/config/dbconnector.php';
-require 'db/config/querybuilder.php';
 require 'models/user.php';
 
 class UserController
@@ -15,15 +14,25 @@ class UserController
         // create user, get returnedthe id of the created user
         $dbuser = $this->user->createUser($email, $firstName, $lastName, $password);
 
-        return $dbuser;
+        $data = array(
+            "userId" => $dbuser,
+        );
+
+        require 'views/showData.php';
     }
 
     //function to call the show user method
     public function showUserModel($id)
     {
-        $showUser = $this->user->findUser($id);
+        $data = $this->user->findUser($id);
 
-        return $showUser;
+        if ($data == null) {
+            $data = array(
+                $id => "User not found",
+            );
+        }
+
+        require 'views/showData.php';
     }
 
     //function to call the edit user method
@@ -32,12 +41,16 @@ class UserController
         $updated = $this->user->updateUser($id, $email, $firstName, $lastName, $password);
 
         if ($updated == 1) {
-            $status = "User updated";
+            $data = array(
+                $id => "User updated",
+            );
         } else {
-            $status = "Update failed";
+            $data = array(
+                $id => "Update failed",
+            );
         }
 
-        return $status;
+        require 'views/showData.php';
     }
 
     //function to call the dele user method
@@ -45,6 +58,16 @@ class UserController
     {
         $deleted = $this->user->deleteUser($id);
 
-        return $deleted;
+        if ($deleted == 1) {
+            $data = array(
+                $id => "User deleted",
+            );
+        } else {
+            $data = array(
+                $id => "Delete failed",
+            );
+        }
+
+        require 'views/showData.php';
     }
 }

@@ -2,28 +2,30 @@
 
 require 'controllers/userController.php';
 
-$view = array();
-
-//test creating a new user
 $userController = new UserController();
 
-$newUser = $userController->createUserModel('janedoe@gmail.com', 'Jane', 'Doe', 'password');
+$url  = rtrim($_SERVER['REQUEST_URI'], '/');
 
-//add the result of creating a new user, the ID, to the view array
-$view['create_response'] = $newUser;
+switch ($url) {
+    case '/user-create':
+        $userController->createUserModel('janedoe@gmail.com', 'Jane', 'Doe', 'password');
+        break;
 
-$showUser = $userController->showUserModel($newUser);
+    case '/user-read':
+        $userController->showUserModel(1);
+        break;
 
-$view['read_response'] = $showUser;
+    case '/user-update':
+        $userController->updateUserModel(1, 'johndoe@gmail.com', 'Jill', 'Doe', 'password');
+        break;
 
-$editedUser = $userController->updateUserModel($newUser, 'johndoe@gmail.com', 'John', 'Doe', 'newpassword');
-
-$view['update_response'] = $editedUser;
-
-$newUserToDelete = $userController->createUserModel('jilldoe@gmail.com', 'Jill', 'Doe', 'password');
-
-$deletedUser = $userController->deleteUserModel($newUserToDelete);
-
-$view['delete_response'] = $deletedUser;
-
-echo json_encode($view);
+    case '/user-delete':
+        $userController->deleteUserModel(1);
+        break;
+    default:
+        $data = array(
+            "error" => "URL not found",
+        );
+        require 'views/showData.php';
+        break;
+}
