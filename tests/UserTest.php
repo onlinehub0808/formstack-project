@@ -2,7 +2,6 @@
 use PHPUnit\Framework\TestCase;
 
 require 'db/config/dbconnector.php';
-require 'db/config/querybuilder.php';
 require 'models/user.php';
 
 class UserTest extends TestCase
