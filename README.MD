@@ -17,3 +17,4 @@
 - To run the unit test. run `vendor/bin/phpunit tests/UserTest.php`
   - This will run the create, read, update, and delete user methods in the User model.
 - To view the results in the web browser, start up the php server with `php -S 127.0.0.1:8080`
+- As seen in index.php, the routes can be tested at `/user-create`, `/user-read`, `/user-update`, and `/user-delete`
